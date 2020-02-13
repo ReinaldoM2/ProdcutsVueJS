@@ -1,28 +1,21 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <section>
+    <router-view></router-view>
+  </section>
 </template>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js">
+</script>
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import IndexScreen from './components/Index'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    "index-screen": IndexScreen
+  },
+  methods:{
+    fetch (){
+      console.log("Hola mundo")
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
