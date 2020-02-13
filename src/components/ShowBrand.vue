@@ -2,15 +2,21 @@
     <section class="container" v-if="!loading">
         <aside class="container__section">
             <v-img class="container__section__imglogo" src="https://demo.amapola.design/wp-content/uploads/2018/07/brands_placeholder.jpg"></v-img>
-            <p id="nombre">{{brand.name}}</p>
+            <p class="container__section__name">{{brand.name}}</p>
             <div class="container__section__stars">
-                <v-img></v-img>
+                <star-rating :rating="5" read-only :show-rating="false" v-bind:star-size="20"></star-rating>
             </div>
-            <div>
-            <p id="contacto">Contacto</p>
-            <p>{{brand.contact}}</p>
+            <div class="container__section__close__shop">
+                <p>Tienda mas cerca</p>
+                <p class="container__section__close__shop__direction">Km 4.5 VIA Neiva Palermo - Zona Franca Surcolombiana</p>
+                <p class="container__section__close__shop__direction">Neiva-Huila</p>
             </div>
-            <div id="horarios_atencion">
+            <div class="container__section__contact">
+                <p>Contacto</p>
+                <p>{{brand.contact}}</p>
+                <p>01-8000-020203</p>
+            </div>
+            <div class="container__section__attention__schedule">
                          <p>Horarios de Atencion</p>
                     <div class="container__section__days">
                         <p><span class="container__section__day_name">Lunes</span><span>08:00 a 17:00</span></p>
@@ -19,18 +25,22 @@
                         <p><span class="container__section__day_name">Jueves</span><span>08:00 a 17:00</span></p>
                         <p><span class="container__section__day_name">Viernes</span><span>08:00 a 17:00</span></p>
                         <p><span class="container__section__day_name">Sabado</span><span>08:00 a 17:00</span></p>
-                        <p><span class="container__section__day_name">Domingo</span><span>08:00 a 17:00</span></p>
-                    
-                   
-                    
-                    
-                    
+                        <p><span class="container__section__day_name">Domingo</span><span>Cerrado</span></p>
                     </div>
             </div>
         </aside>
         <article class="container__main">
             <h1 class="container__main__description">Descripcion</h1>
             <p class="container__main__description__brand">{{brand.description}}</p>
+            <div class="container__main__brand__qualify">
+                <div class="container__main__qualify">
+                    <label>CALIFICAR</label>
+                    <star-rating :rating="1" :max-rating="1" read-only :show-rating="false" v-bind:star-size="15"></star-rating>
+                </div>
+                <div class="container__main__icon">
+                    <img :src="require('../assets/icon.svg')" class="container__main__icon__img">
+                </div>
+            </div>
             <div class="container__div">
                 <h1 class="container__div__buy">Para Comprar</h1>
                 <div class="container__cards">
@@ -54,8 +64,12 @@
 
 <script>
 import numeral from 'numeral'
+import Rating from 'vue-star-rating'
 export default {
     props: ['brand_id',],
+    components: {
+        'star-rating': Rating
+    },
     data: function(){
         return{
             errorMarca: false,
@@ -128,55 +142,106 @@ export default {
 
             &__description__brand{
                 font-size: 16px;
+                margin-top: 10px;
             }
+
+            &__brand__qualify{
+                display: flex;
+                padding-top: 15px;
+            }
+
+            &__qualify{
+                color: #9393a0;
+                font-family: SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
+                line-height: 40px;
+                font-size: 13px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            &__qualify:hover{
+                border-color: #ffc23f;
+                color: #ffc23f!important;
+            }
+
+            &__icon{
+                position: static;
+                border: 1px solid #e9e9f0;
+                border-radius: 2px;
+                margin-left: 20px;
+                margin-top: 5px;
+            }
+
+            &__icon__img{
+                width: 17.21px;
+                height: 16px;
+                object-fit: contain;
+                border-style: none;
+                display: inline-block;
+                vertical-align: middle;
+                max-width: 100%;
+                height: auto;
+            }
+
         }
 
         &__section {
-            width: 300px;
+                    width: 300px;
 
-            &__imglogo{
-                width: 198px;
-                height: 198px;
-            }
+                    &__imglogo{
+                        width: 198px;
+                        height: 198px;
+                    }
 
-           &__day_name{
-               width: 45%;
-               font-weight: bold;
-               display: inline-block;
-           }
+                    &__name{
+                    font-size: 34px;
+                    }
 
-           &__days{
-               font-size: 15px;
-               font-weight: lighter;
+                    &__attention__schedule{
+                    font-size: 21px;
+                    margin: 15px 0;
+                    width: 75%;
+                    }
 
-           } 
+                &__day_name{
+                    width: 45%;
+                    font-weight: bold;
+                    display: inline-block;
+                    padding-top: 20px;
+                    font-size: 16px;
+                }
+
+                &__days{
+                    font-size: 15px;
+                    font-weight: lighter;
+
+                }
+
+                &__close__shop{
+                    font-size: 21px;
+                    margin-top: 10px;
+                    width: 75%;
+                }
+
+                &__close__shop__direction{
+                    font-size: 16px;
+                }
+                &__contact{
+                    margin-top: 10px;
+                    font-size: 21px;
+                    width: 75%;
+
+                    p+p{
+                        margin: 0;
+                        text-indent: 0;
+                        font-size: 16px;
+                    }
+                } 
 
         }
 
-        #nombre{
-            font-size: 34px;
-            font-family:  SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
-        }
-
-        #contacto{
-            font-size: 21px;
-            font-family: SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
-        }
-
-        #horarios_atencion{
-            font-size: 21px;
-            margin: 15px 0;
-            width: 75%;
-        }
-
-        #dias{
-            background-repeat: no-repeat;
-            padding: 0;
-            margin: 0;
-            padding: 5px 0;
-            font-family: SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
-            text-align: left;
-        }
 
         &__div {
             width: 100%;
@@ -191,7 +256,7 @@ export default {
         &__card{
             margin-top: 10px;
             width: 28%;
-            margin-right: 13px;
+            margin-right: 20px;
             background-color: transparent;
             box-shadow: none;
             border: 1px solid #d4d4d4;
