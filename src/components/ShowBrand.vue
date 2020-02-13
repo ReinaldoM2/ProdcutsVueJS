@@ -45,19 +45,96 @@
                 <h1 class="container__div__buy">Para Comprar</h1>
                 <div class="container__cards">
                     <v-card  class="container__card"
-                    v-for="product in products" 
-                    :key="product.id">
+                     v-for="product in products" 
+                    :key="product.id"
+                   >
                     <v-img class="container__card__img" src="https://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png"></v-img>
                         <v-card-subtitle class="pb-0">{{product.name}}</v-card-subtitle>
-
                         <v-card-text>
                         <div>{{price(product.price)}}</div>
                         </v-card-text>
+                        <div class="container__card__place">
+                            <p class="container__card__place__direction">En:Bogotá,Bogotá</p>
+                        </div>
+                        
+                    </v-card>
+                    
+                </div>
+            </div>
+            <div>
+                <v-btn class="container__all__brands" @click="nada">VER TODO</v-btn>
+            </div>
+            <div class="container__other__products">
+                <h1>Mas Productos Ofrecidos</h1>
+                 <div class="container__cards">
+                    <v-card  class="container__card"
+                     v-for="product in products" 
+                    :key="product.id"
+                   >
+                    <v-img class="container__card__img" src="https://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png"></v-img>
+                        <v-card-subtitle class="pb-0">{{product.name}}</v-card-subtitle>
                     </v-card>
                 </div>
-                
             </div>
+            <div class="container__review">
+                <strong>4/5</strong>
+                <div class="container__review__rating">
+                  <star-rating :rating="4" :max-rating="4" read-only :show-rating="false" v-bind:star-size="25"></star-rating>  
+                </div>
+            </div>    
+                <section>
+                    <div class="container__brand__review__scores">
+                        <div class="container__brand__review__scores__item">
+                             <p class="container__brand__review__scores__item__label"> 5 estrellas</p>
+                             <div class="container__brand__review__scores__item__bar">
+                                 <div class="container__progress__bar">
+                                     <div class="container__progress__bar__seeker" style="width: 0%; background: rgb(54, 46, 130);"></div>
+                                 </div>
+                             </div>
+                             <p>0 personas</p>
+                        </div>
+                        <div class="container__brand__review__scores__item">
+                             <p class="container__brand__review__scores__item__label"> 4 estrellas</p>
+                             <div class="container__brand__review__scores__item__bar">
+                                 <div class="container__progress__bar">
+                                     <div class="container__progress__bar__seeker" 
+                                     style="width: 100%; background: rgb(54, 46, 130); border-radius: 3px; height: 5px;position: absolute;">
+                                     </div>
+                                 </div>
+                             </div>
+                             <p>3 personas</p>
+                        </div>
+                        <div class="container__brand__review__scores__item">
+                             <p class="container__brand__review__scores__item__label"> 3 estrellas</p>
+                             <div class="container__brand__review__scores__item__bar">
+                                 <div class="container__progress__bar">
+                                     <div class="container__progress__bar__seeker" style="width: 0%; background: rgb(54, 46, 130);"></div>
+                                 </div>
+                             </div>
+                             <p>0 personas</p>
+                        </div>
+                        <div class="container__brand__review__scores__item">
+                             <p class="container__brand__review__scores__item__label"> 2 estrellas</p>
+                             <div class="container__brand__review__scores__item__bar">
+                                 <div class="container__progress__bar">
+                                     <div class="container__progress__bar__seeker" style="width: 0%; background: rgb(54, 46, 130);"></div>
+                                 </div>
+                             </div>
+                             <p>0 personas</p>
+                        </div>
+                        <div class="container__brand__review__scores__item">
+                             <p class="container__brand__review__scores__item__label"> 1 estrella</p>
+                             <div class="container__brand__review__scores__item__bar">
+                                 <div class="container__progress__bar">
+                                     <div class="container__progress__bar__seeker" style="width: 0%; background: rgb(54, 46, 130);"></div>
+                                 </div>
+                             </div>
+                             <p>0 personas</p>
+                        </div>
+                    </div>
+                </section>
         </article>
+        <footer></footer>
     </section>
     <p v-else>Cargando</p>
 </template>
@@ -113,6 +190,10 @@ export default {
                 alert('Error', err.message)
                 this.loading = false
             })
+        },
+
+        nada(){
+            alert('Todavia no funciono :(')
         }
     },
     mounted () {
@@ -259,7 +340,6 @@ export default {
             margin-right: 20px;
             background-color: transparent;
             box-shadow: none;
-            border: 1px solid #d4d4d4;
 
             &:nth-child(3n) {
                 margin-right: 0;
@@ -277,6 +357,84 @@ export default {
             flex-wrap: wrap;
         }
 
-    
+        &__card__place{
+            padding-top: 2em;
+            
+        }
+
+        &__card__place__direction{
+            text-align: left;
+            padding-left: 16px;
+            font-size: 16px;
+        }
+
+        &__all__brands{
+            margin-top: 50px;
+            margin-left: 5px;
+            text-align: center;
+            vertical-align: middle;
+            width: auto;
+            height: 40px;
+            padding: 8px 20px;
+            display: inline-block;
+            border: 1px solid #5755fb;
+            font-family: SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
+            text-transform: uppercase;
+            font-size: 15px;
+            border-radius: 2px;
+            cursor: pointer;
+            color: #5755fb;
+        }
+
+        &__other__products{
+            margin-top: 30px;
+        }
+
+        &__review{
+            margin-top: 30px;
+            font-size: 40px;
+            font-family: SF Bold,SF,Arial,Helvetica Neue,Helvetica,sans-serif;
+            color: #000;
+            margin-right: 15px;
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        &__review__rating{
+            margin-left: 20px;
+        }
+
+        &__brand__review__scores{
+            width: 103%;
+        }
+
+        &__brand__review__scores__item{
+            display: -webkit-flex; 
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: row;
+            padding: 7px 0;
+            font-size: 16px;
+        }
+
+        &__brand__review__scores__item__label{
+          width: 75px;
+        }
+
+        &__brand__review__scores__item__bar{
+            margin: 0 4em;
+            width: 60%;
+        }
+
+        &__progress__bar{
+            width: 100%;
+            background: #e9e9f0;
+            height: 3px;
+            position: relative;
+        }
+
+        p{
+            font-size: 16px;
+        }
     }
 </style>

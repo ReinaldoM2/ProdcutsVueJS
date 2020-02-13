@@ -12,10 +12,5 @@ export default {
   components: {
     "index-screen": IndexScreen
   },
-  methods:{
-    fetch (){
-      console.log("Hola mundo")
-    }
-  }
 }
 </script>

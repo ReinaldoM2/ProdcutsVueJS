@@ -6,7 +6,7 @@
     <div v-else>
         <h1>Marcas</h1>
         <v-btn small rounded @click="$router.push('/brand/new')">Crear Marca</v-btn>
-        <v-btn small rounded>Importar Marca</v-btn>
+        <v-btn small rounded @click="$router.push('/brands/import_from_file')">Importar Marca</v-btn>
         <br>
         <br>
         <table>
@@ -21,8 +21,7 @@
                     <td>{{ brand.name }}</td>
                     <td>
                        <v-btn small rounded @click="$router.push(`/${brand.id}`)">Ver</v-btn>
-                       <v-btn small rounded>Editar</v-btn>
-                       <v-btn small rounded>Eliminar</v-btn>
+                       <v-btn small rounded @click="deleteBrandList(brand.id)">Eliminar</v-btn>
                     </td>
                 </tr>
             </tbody>
@@ -50,6 +49,20 @@ export default {
             .catch(err=> {
                 alert('Error ', err.message)
                 this.loading = false
+            })
+        },
+
+        deleteBrandList(brand_id){
+            this.$http.delete('http://localhost:3000/brands/'+brand_id)
+            .then(response=>{
+                if (response.status===200) {
+                    alert('Eliminado Con Exito')
+                    return this.getBrandList()
+                }
+                alert('Error al Eliminar')
+                    
+            }).catch(err=>{
+                 alert('Error', err.message)
             })
         }
     }, 

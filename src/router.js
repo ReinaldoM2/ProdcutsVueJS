@@ -1,7 +1,7 @@
 const Home = () => import('./components/Index')
 const ShowBrand = () => import('./components/ShowBrand')
 const createBrand = () => import('./components/createBrand')
-const createProductByBrand = () => import('./components/createProductByBrand')
+const importBrands = () => import('./components/importBrands')
 
 const Routes = [
     {
@@ -18,9 +18,8 @@ const Routes = [
         component: createBrand
     },
     {
-        path:'/brands/:brand_id/products',
-        component: createProductByBrand,
-        props: true
+        path:'/brands/import_from_file',
+        component: importBrands
     }
 
 ]
