@@ -1,7 +1,7 @@
 <template>
     <section class="container" v-if="!loading">
         <aside class="container__section">
-            <v-img class="container__section__imglogo" src="https://demo.amapola.design/wp-content/uploads/2018/07/brands_placeholder.jpg"></v-img>
+            <v-img contain class="container__section__imglogo"  :src="brandImage"></v-img>
             <p class="container__section__name">{{brand.name}}</p>
             <div class="container__section__stars">
                 <star-rating :rating="5" read-only :show-rating="false" v-bind:star-size="20"></star-rating>
@@ -48,7 +48,8 @@
                      v-for="product in products" 
                     :key="product.id"
                    >
-                    <v-img class="container__card__img" src="https://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png"></v-img>
+                    <v-img contain class="container__card__img" 
+                        :src="productImage(product)"></v-img>
                         <v-card-subtitle class="pb-0">{{product.name}}</v-card-subtitle>
                         <v-card-text>
                         <div>{{price(product.price)}}</div>
@@ -71,7 +72,11 @@
                      v-for="product in products" 
                     :key="product.id"
                    >
-                    <v-img class="container__card__img" src="https://www.stleos.uq.edu.au/wp-content/uploads/2016/08/image-placeholder.png"></v-img>
+                    <v-img 
+                        contain
+                        class="container__card__img" 
+                        :src="productImage(product)">
+                    </v-img>
                         <v-card-subtitle class="pb-0">{{product.name}}</v-card-subtitle>
                     </v-card>
                 </div>
@@ -134,7 +139,6 @@
                     </div>
                 </section>
         </article>
-        <footer></footer>
     </section>
     <p v-else>Cargando</p>
 </template>
@@ -151,12 +155,23 @@ export default {
         return{
             errorMarca: false,
             errorProducto: false,
-            brand: null,
+            brand: {},
             products: [],
             loading: true
         }
     },
     computed: {
+        productImage () {
+            return (product) => {
+                if (!product.image) return 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTuD1NyyxFxShefmfPQ2i9SKWC1hesWTqdIk2OnYfl17wzeNEQ9'
+                return product.image
+            }
+        },
+        
+        brandImage(){
+            if(!this.brand.image) return 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTuD1NyyxFxShefmfPQ2i9SKWC1hesWTqdIk2OnYfl17wzeNEQ9'
+            return this.brand.image
+        },
         price () {
             return function (num) {
                 return numeral(num).format('$0,0')
@@ -272,8 +287,7 @@ export default {
                     width: 300px;
 
                     &__imglogo{
-                        width: 198px;
-                        height: 198px;
+                        height: 260px;
                     }
 
                     &__name{
@@ -344,11 +358,10 @@ export default {
             &:nth-child(3n) {
                 margin-right: 0;
             }
-
             &__img{
+                background-color: white;
                 width: 100%;
                 height: 198px;
-                object-fit: cover;
             }
         }
 
@@ -431,10 +444,6 @@ export default {
             background: #e9e9f0;
             height: 3px;
             position: relative;
-        }
-
-        p{
-            font-size: 16px;
         }
     }
 </style>
