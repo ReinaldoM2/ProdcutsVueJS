@@ -48,7 +48,7 @@ export default {
         },
 
         postUserDataFromFacebook(authData){
-            this.$http.post('http://localhost:3000/auth/facebook',{
+            this.$http.post('https://pure-stream-75584.herokuapp.com/auth/facebook',{
                 name: authData.first_name,
                 email: authData.email,
                 UID: authData.id

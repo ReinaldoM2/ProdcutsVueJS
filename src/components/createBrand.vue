@@ -63,11 +63,11 @@ export default {
     
     methods:{
         postBrandData(){
-            this.$http.post('http://localhost:3000/brands',{
+            this.$http.post('https://pure-stream-75584.herokuapp.com/brands',{
                 ...this.brand
             })
             .then(response=>{
-                if (response.data.id) return this.$router.push('/')
+                if (response.data.id) return this.$router.push('/index')
                 alert('error to create')
             })
         }
