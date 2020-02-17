@@ -34,7 +34,7 @@
          Crear
         </v-btn>
         <v-btn
-        class="mr-4"
+        class="mr-4" @click="$router.push('/')"
         >
          Volver
         </v-btn>
