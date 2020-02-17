@@ -13,7 +13,7 @@
       <v-row>
             <v-col>
                 <v-btn type="submit">Enviar</v-btn>
-                <v-btn class="mr-4" @click="$router.push('/')"> Volver </v-btn>
+                <v-btn class="mr-4" @click="$router.push('/index')"> Volver </v-btn>
             </v-col>
       </v-row>
     </v-container>

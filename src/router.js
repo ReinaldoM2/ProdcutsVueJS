@@ -1,4 +1,5 @@
-const Home = () => import('./components/Index')
+const Home = () => import('./components/LogIn')
+const Index = () => import('./components/Index')
 const ShowBrand = () => import('./components/ShowBrand')
 const createBrand = () => import('./components/createBrand')
 const importBrands = () => import('./components/importBrands')
@@ -9,17 +10,33 @@ const Routes = [
         component: Home
     },
     {
+        path: '/index',
+        component:Index,
+        meta: {
+            private: true
+        }
+    },
+    {
         path: '/:brand_id', 
         component: ShowBrand,
-        props: true
+        props: true,
+        meta: {
+            private: true
+        }
     },
     {
         path: '/brand/new',
-        component: createBrand
+        component: createBrand,
+        meta: {
+            private: true
+        }
     },
     {
         path:'/brands/import_from_file',
-        component: importBrands
+        component: importBrands,
+        meta: {
+            private: true
+        }
     }
 
 ]

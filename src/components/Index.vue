@@ -33,6 +33,8 @@
 <script>
 export default {
     name: 'IndexScreen',
+    components:{
+    },
     data: function() {
         return {
             list: [],
