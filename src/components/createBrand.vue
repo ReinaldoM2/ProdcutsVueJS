@@ -27,14 +27,18 @@
         required
         ></v-text-field>
 
+        
+        <v-file-input v-model="brand.image" multiple label="Selecciona una Imagen"></v-file-input>
+        
+
         <v-btn
-            type="submit"
-        class="mr-4"
+        type="submit"
+        class="mr-4" color="#2ecc71" style="color: white;"
         >
          Crear
         </v-btn>
         <v-btn
-        class="mr-4" @click="$router.push('/index')"
+        class="mr-4" color="#2ecc71" style="color: white; margin-left: 10px;" @click="$router.push('/index')"
         >
          Volver
         </v-btn>
@@ -48,7 +52,8 @@ export default {
             brand:{
                 name: '',
                 description: '',
-                contact: ''
+                contact: '',
+                image:'',
             },
             nameRules: [
                 v => !!v || 'Nombre requerido'
@@ -63,12 +68,25 @@ export default {
     
     methods:{
         postBrandData(){
-            this.$http.post('http://localhost:3000/brands',{
-                ...this.brand
+            let formData = new FormData();
+            formData.append('name',this.brand.name)
+            formData.append('description',this.brand.description)
+            formData.append('contact',this.brand.contact)
+            formData.append('brand_image',this.brand.image[0])
+            console.log(formData)
+            this.$http.post('http://localhost:3000/brands',formData,{
+                headers:{
+                    'Content-Type': 'multipart/form-data'
+                }
             })
-            .then(response=>{
-                if (response.data.id) return this.$router.push('/createProducts')
-                alert('error to create')
+            .then(response =>{
+                if (response.status===200){
+                    alert('Producto Creado')
+                    return this.$router.push('/index')
+                }
+                alert('Product no creado')
+            }).catch(err=>{
+                alert('Error',err.message)
             })
         }
     }
@@ -77,6 +95,12 @@ export default {
 
 <style scoped>
 .container{
-    width: 50%;
+    margin-top: 110px;
+    width: 60%;
+    min-height: 53vh !important;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px grey;
+    padding: 25px;
 }
 </style>

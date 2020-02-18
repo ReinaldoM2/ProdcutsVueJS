@@ -147,7 +147,7 @@
 import numeral from 'numeral'
 import Rating from 'vue-star-rating'
 export default {
-    props: ['brand_id',],
+    props: ['brand_id'],
     components: {
         'star-rating': Rating
     },

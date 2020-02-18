@@ -46,8 +46,9 @@ const Routes = [
         props: true,
     },
     {
-        path: '/products/import_from_file',
-        component: importProductsByBrand
+        path: '/brands/:brand_id/products/import_from_file',
+        component: importProductsByBrand,
+        props: true
     }
 
 ]
