@@ -52,7 +52,7 @@ export default {
     },
     methods: {
         getBrandList () {
-            this.$http.get('http://localhost:3000/brands')
+            this.$http.get('https://pure-stream-75584.herokuapp.com//brands')
             .then(response => {
                 this.list = response.data
                 this.loading = false
@@ -64,7 +64,7 @@ export default {
         },
 
         deleteBrandList(brand_id){
-            this.$http.delete('http://localhost:3000/brands/'+brand_id)
+            this.$http.delete('https://pure-stream-75584.herokuapp.com//brands/'+brand_id)
             .then(response=>{
                 if (response.status===200) {
                     alert('Eliminado Con Exito')

@@ -38,7 +38,7 @@ export default {
             let formData = new FormData();
             formData.append('file', this.file[0]);
             console.log(formData)
-            this.$http.post(`http://localhost:3000/brands/${this.brand_id}/products/import_from_file`,formData,{
+            this.$http.post(`https://pure-stream-75584.herokuapp.com//brands/${this.brand_id}/products/import_from_file`,formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }

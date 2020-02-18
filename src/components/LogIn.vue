@@ -48,7 +48,7 @@ export default {
         },
 
         postUserDataFromFacebook(authData){
-            this.$http.post('http://localhost:3000/auth/facebook',{
+            this.$http.post('https://pure-stream-75584.herokuapp.com//auth/facebook',{
                 name: authData.first_name,
                 email: authData.email,
                 UID: authData.id
@@ -81,9 +81,9 @@ export default {
     }
 
     &__section__btnfacebook{
-        margin: 0 auto;
-        margin-top: 15px;
-        cursor: pointer;
+        margin: 0 auto !important;
+        margin-top: 15px !important;
+        cursor: pointer !important;
     }
 
 }

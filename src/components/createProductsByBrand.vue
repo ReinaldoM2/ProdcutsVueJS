@@ -71,7 +71,7 @@ export default {
             formData.append('price',this.products.price)
             formData.append('quantity',this.products.quantity)
             formData.append('product_image',this.products.image[0])
-            this.$http.post(`http://localhost:3000/brands/${this.brand_id}/products`,formData,{
+            this.$http.post(`https://pure-stream-75584.herokuapp.com//brands/${this.brand_id}/products`,formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }

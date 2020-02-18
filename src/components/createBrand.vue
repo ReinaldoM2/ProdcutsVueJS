@@ -74,7 +74,7 @@ export default {
             formData.append('contact',this.brand.contact)
             formData.append('brand_image',this.brand.image[0])
             console.log(formData)
-            this.$http.post('http://localhost:3000/brands',formData,{
+            this.$http.post('https://pure-stream-75584.herokuapp.com//brands',formData,{
                 headers:{
                     'Content-Type': 'multipart/form-data'
                 }
