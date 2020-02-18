@@ -2,7 +2,7 @@
     <div class="container">
        <section class="container__section">
            <article class="container__article">
-               <h1 class="container__article__tittle">IMPORTACION DE MARCAS MASIVAS</h1>
+               <h1 class="container__article__tittle">IMPORTACION DE PRODUCTOS</h1>
                <v-form ref="form" @submit.prevent="postImportBrand">
     <v-container>
       <v-row>

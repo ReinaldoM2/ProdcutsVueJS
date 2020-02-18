@@ -24,7 +24,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.meta.private) {
     if (localStorage.getItem('user')) {
       try {
-        let user = await axios.post('https://pure-stream-75584.herokuapp.com/auth/facebook', {
+        let user = await axios.post('http://localhost:3000/auth/facebook', {
           UID: localStorage.getItem('user')
         })
         console.log('user', user)

@@ -180,7 +180,7 @@ export default {
     },
     methods:{
         getBrandData(){
-            this.$http.get('https://pure-stream-75584.herokuapp.com/brands/' + this.brand_id)
+            this.$http.get('http://localhost:3000/brands/' + this.brand_id)
             .then(response =>{
                 this.errorMarca = false
                 this.brand = response.data
@@ -194,7 +194,7 @@ export default {
         },
 
         getBrandProducts(){ 
-            this.$http.get(`https://pure-stream-75584.herokuapp.com/brands/${this.brand_id}/products/`)
+            this.$http.get(`http://localhost:3000/brands/${this.brand_id}/products/`)
             .then(response =>{
                 this.errorProducto = false
                 this.products = response.data

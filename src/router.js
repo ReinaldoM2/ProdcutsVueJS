@@ -3,6 +3,8 @@ const Index = () => import('./components/Index')
 const ShowBrand = () => import('./components/ShowBrand')
 const createBrand = () => import('./components/createBrand')
 const importBrands = () => import('./components/importBrands')
+const createProductsByBrand = () => import('./components/createProductsByBrand')
+const importProductsByBrand = () => import('./components/importProductsByBrand')
 
 const Routes = [
     {
@@ -37,6 +39,15 @@ const Routes = [
         meta: {
             private: true
         }
+    },
+    {
+        path: '/brands/:brand_id/products',
+        component: createProductsByBrand,
+        props: true,
+    },
+    {
+        path: '/products/import_from_file',
+        component: importProductsByBrand
     }
 
 ]
